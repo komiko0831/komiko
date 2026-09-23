@@ -14,8 +14,8 @@ math: true
 论文复现[Noisy Polynomial Interpolation  and Noisy Chinese Remaindering](https://www.iacr.org/archive/eurocrypt2000/1807/18070053-new.pdf)
 ## 1.
 ## Problem 1 (Noisy polynomial interpolation)
-![](https://github.com/komiko0831/picx-images-hosting/raw/master/QQ20250407-001351.54xzbrh31y.png)
-![](https://github.com/komiko0831/picx-images-hosting/raw/master/QQ20250407-001340.2dox3ov4nj.png)
+![](/images/noise-crt/QQ20250407-001351.54xzbrh31y.png)
+![](/images/noise-crt/QQ20250407-001340.2dox3ov4nj.png)
 你有一个未知的多项式 \(P(x)\)，它的次数最多是 \(k\)，
 你已知的：
 - 一堆不同的点 \(x_1,x_2,\ldots,x_n\in\mathbb{F}\)，这些是你希望插值的横坐标；
@@ -335,7 +335,7 @@ $$
 \(\vec{\delta}\in\{0,1\}^{n\cdot m}\)是要找的向量， \(\vec{f}\in\mathbb{Q}^{d+1}\)是多项式的系数向量, 规约出它就代表求出了未知的多项式。
 ## 2.
 ### Problem 2 (Noisy Chinese remaindering)
-![](https://github.com/komiko0831/picx-images-hosting/raw/master/QQ20250407-011247.8z6qupzh77.png)
+![](/images/noise-crt/QQ20250407-011247.8z6qupzh77.png)
 给出一组互素的整数 \(p_1,p_1,\cdots,p_n\)。给出n个集合 \(S_1,S_2,\cdots,S_n\),其中每个 \(S_i=\{r_{i,j}\}_{1\leq j\leq m}\)包含 \(m-1\)个在 \(\mathbb{Z}_{p_i}\)上的随机元素，只有一个真正的 \(N \mod p_i\)。在满足解唯一的情况下，恢复整数 N。
 #### 2.1 Lattice-Based Methods
 直接看题
@@ -363,7 +363,7 @@ shuffle函数对 \(c\)进行随机打乱
 分析：
 如果没有被打乱，这就是一个简单的CRT，也就是对c的最后一列进行CRT处理就能得到flag的值，这道题就在于c被打乱，无法确定 \(c_i\)到底是真实模值还是随机数。是一个典型的noisyCRT问题。
 复习一下CRT吧：
-![](https://github.com/komiko0831/picx-images-hosting/raw/master/s.102dznkgbd.png)
+![](/images/noise-crt/s.102dznkgbd.png)
 令： \(P = prod(p)\)， \(P_i = P//p_i\)
 $$
 c=\begin{pmatrix}a_{1,1}&a_{1,2}&a_{1,3}&a_{1,4}\\a_{2,1}&a_{2,2}&a_{2,3}&a_{2,4}\\&\cdots&\ddots&\cdots\\a_{20,1}&a_{20,2}&a_{20,3}&a_{20,4}\end{pmatrix}

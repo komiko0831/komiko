@@ -19,7 +19,7 @@ math: true
 接下来我会一边解释论文中提到的步骤，一边逐行讲解对应代码实现。
 ## 核心攻击
 论文的核心攻击基于以下引理：
-![](https://github.com/komiko0831/picx-images-hosting/raw/master/image-(2).1hsindxry9.png)
+![](/images/uov-key-recovery-one-vector/image-2.1hsindxry9.png)
 它表明，给定油子空间 O 中的一个非零向量 \(\mathbf{x}\)，我们可以构造一个线性系统 \(J(\mathbf{x})\)，其核 \(K(\mathbf{x}) = \text{ker}(J(\mathbf{x}))\) 包含 O。
 ###  \(J(\mathbf{x})\)
 雅可比矩阵，学过高数的大家应该都对它比较熟悉，
@@ -39,7 +39,7 @@ $$
 设 \(f\) 是一个二次型，即 \(f(x) = x^T G x\)。所有向量 x 满足 f(x)=0，即满足：子空间中每个向量都在该二次型下为 0，且向量两两之间也“互相正交”
 也就是UOV中的油变量子空间 \(O\).
 ### 证明：
-![](https://github.com/komiko0831/picx-images-hosting/raw/master/image-(3).175ou8ivml.webp)
+![](/images/uov-key-recovery-one-vector/image-3.175ou8ivml.webp)
 \(x\in\mathcal{O},\:z\in\mathcal{O}\)
 \(\mathcal{O}\)是全迷向的：
 $$

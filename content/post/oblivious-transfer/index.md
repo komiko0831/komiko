@@ -155,8 +155,8 @@ client.close()
 
 ```
 ### 实验结果如下：
-![](https://github.com/komiko0831/picx-images-hosting/raw/master/QQ20250326-171958.3uv0pg247k.webp)
-![](https://github.com/komiko0831/picx-images-hosting/raw/master/QQ20250326-172013.3yemn5vyt3.webp)
+![](/images/oblivious-transfer/QQ20250326-171958.3uv0pg247k.webp)
+![](/images/oblivious-transfer/QQ20250326-172013.3yemn5vyt3.webp)
 我们可以看到B成功可以获得指定索引的消息，而A不会泄露B不需要的消息。
 ---
 $$
@@ -164,7 +164,7 @@ OT_1^N
 $$
 ---
 基于RSA公钥算法实现的 n 选 1的OT协议流程可以由下图清晰的呈现出来
-![](https://github.com/komiko0831/picx-images-hosting/raw/master/d24a4d29b17f988cbf2246f760363071.4xuq0bw537.webp)
+![](/images/oblivious-transfer/d24a4d29b17f988cbf2246f760363071.4xuq0bw537.webp)
 ## ctf challenge
 下面我们来看下OT在CTF中的实战，通常题目设置不会单一考察OT这一个知识点，且对OT的考察也不局限于基本概念，会更加的灵活。
 ### OK - zer0pts CTF 2022
@@ -502,7 +502,7 @@ if __name__ == '__main__':
 #### 分析：
 #### step1：构造v （lv2）
 题目很长，但是读一读就能发现这其实是个比较有意思的小故事啦，提炼一下有效信息有：
-Oblivious Transfer 生成 \(0\leq x_1,x_2,x_3<N\)三个随机数，需要传回一个 \(v\)，计算并返回：
+Oblivious Transfer 生成 \(0\leq x_1,x_2,x_3\lt N\)三个随机数，需要传回一个 \(v\)，计算并返回：
 $$
 c_{1}\equiv(\:v-x_{1})^{d}+p\quad(\:\mathrm{mod}\:N\:)\\c_{2}\equiv(\:v-x_{2})^{d}+q\quad(\:\mathrm{mod}\:N\:)\\c_{3}\equiv(\:v-x_{3})^{d}+r\quad(\:\mathrm{mod}\:N\:)
 $$
@@ -511,7 +511,7 @@ $$
 n = pqr
 $$
 n需要被分解，但是传入 \(v = r^e + x_{i=1,2,3}\)只能得到 \(p,q,r\)中的一个，没有办法完全分解 \(n\)。
-类比上一题的思想，也就是利用 \(v-x_{1}\equiv-\left(\:v-x_{2}\right)\:(\:\mathrm{mod}\:N\:)\)，通过发送两个相应随机数的中间值求和的思想，应用到这道题来说，就是 \(s\equiv c_1+c_2\equiv p+q\pmod N\)，上一题由分类讨论消去模 \(N\)的作用，这里由于 \(p+q<N\)，所以模 \(N\)直接不作用了。但是我们明显没有办法只通过 \(p+q\)和 \(p*q*r\)就分解n。
+类比上一题的思想，也就是利用 \(v-x_{1}\equiv-\left(\:v-x_{2}\right)\:(\:\mathrm{mod}\:N\:)\)，通过发送两个相应随机数的中间值求和的思想，应用到这道题来说，就是 \(s\equiv c_1+c_2\equiv p+q\pmod N\)，上一题由分类讨论消去模 \(N\)的作用，这里由于 \(p+q\lt N\)，所以模 \(N\)直接不作用了。但是我们明显没有办法只通过 \(p+q\)和 \(p*q*r\)就分解n。
 改进：
 从上一道题可以得出更广义的结论：当 \(\left(v_{k}-x{_1}\right)^{d}\)和 \(\left(v_{k}-x{_2}\right)^{d}\)成线性关系的时候，可以得到秘密消息的线性关系。
 我们假设：
@@ -521,7 +521,7 @@ $$
 $$
 可以有：s\equiv c_1+c_2k\equiv p+qk\pmod N
 $$
-这里也要不让 \(p+kq <N\)，我们只需取 \(k = 2^{256}\)就可以获得一个 \(768-bits\)的 \(p,q\)位信息
+这里也要不让 \(p+kq\lt N\)，我们只需取 \(k = 2^{256}\)就可以获得一个 \(768-bits\)的 \(p,q\)位信息
 #### step2：Coppersmith
 很明显需要需要用到Coppersmith来解了，
 我们有了 \(p+q^{256}\)的值，还可以写作：

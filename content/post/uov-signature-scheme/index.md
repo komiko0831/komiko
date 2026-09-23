@@ -23,7 +23,7 @@ UOV签名方案基于多变量二次多项式。该方案分为两个变量组�
 - 醋变量（Vinegar Variables）：记作 \(y_1,y_2,\cdots,y_v\)
 其中，通常 \(o>v\)，也就是多放醋少放油会更安全。
 我有 \(o\)份油醋配方作为公钥：
-\(f_{i}(x_{1},x_{2},\ldots,x_{n})=\sum_{j=1}^{n}a_{ij}x_{j}^{2}+\sum_{j<k}b_{ijk}x_{j}x_{k}\)
+\(f_{i}(x_{1},x_{2},\ldots,x_{n})=\sum_{j=1}^{n}a_{ij}x_{j}^{2}+\sum_{j\lt k}b_{ijk}x_{j}x_{k}\)
 其中，**没有 油，醋一次项，油二次项，以及常数项**。这是UOV的特点（齐次）
 **流程：**
 1. 选 vinegar 变量
@@ -87,7 +87,7 @@ $$
 设有一个变量向量： \(x = (x_1,x_2,\cdots,x_n)^T \in \mathbb{F}_{q}^n\)
 对于二次型：
 $$
-f_{i}(x_{1},x_{2},\ldots,x_{n})=\sum_{j=1}^{n}a_{ij}x_{j}^{2}+\sum_{j<k}b_{ijk}x_{j}x_{k}
+f_{i}(x_{1},x_{2},\ldots,x_{n})=\sum_{j=1}^{n}a_{ij}x_{j}^{2}+\sum_{j\lt k}b_{ijk}x_{j}x_{k}
 $$
 也有更简洁的形式：
 $$
@@ -97,14 +97,21 @@ $$
 $$
 A=\begin{pmatrix}A_1&A_2\\0&A_3\end{pmatrix}
 $$
-![](attachment:0eba587b-e808-49c3-8681-38acae17315b:image.png)
+![](/images/uov-signature-scheme/image.0eba587b.png)
+
 #### 性质：
 - Q服从平行四边形定律：
 $$
 Q(u+v)+Q(u-v)=2Q(u)+2Q(v)
 $$
 - **极化形式（polar form）(很重要！）：**
-  \(p^{\prime}(\boldsymbol{x},\boldsymbol{y})=p(\boldsymbol{x}+\boldsymbol{y})-p(\boldsymbol{x})-p(\boldsymbol{y})\)  展开：  \(p(\boldsymbol{x}+\boldsymbol{y})=\boldsymbol{x}^T\boldsymbol{A}\boldsymbol{x}+\boldsymbol{x}^T(\boldsymbol{A}+\boldsymbol{A}^T)\boldsymbol{y}+\boldsymbol{y}^T\boldsymbol{A}\boldsymbol{y}\)  得到：  $$
+  \(p^{\prime}(\boldsymbol{x},\boldsymbol{y})=p(\boldsymbol{x}+\boldsymbol{y})-p(\boldsymbol{x})-p(\boldsymbol{y})\)
+
+  展开：\(p(\boldsymbol{x}+\boldsymbol{y})=\boldsymbol{x}^T\boldsymbol{A}\boldsymbol{x}+\boldsymbol{x}^T(\boldsymbol{A}+\boldsymbol{A}^T)\boldsymbol{y}+\boldsymbol{y}^T\boldsymbol{A}\boldsymbol{y}\)
+
+  得到：
+
+  $$
   p^{\prime}(x,y)=x^{T}(A+A^{T})y
   $$
 因此，极化形式对 \(x\)和 \(y\)都是对称和线性的。
@@ -180,16 +187,19 @@ chall = vector(F, bytes.fromhex(f.read_line().strip().decode()))
 这个参数规模略小于 NIST Level 1 的安全等级。同时，我们还获得了子空间 \(O\) 的一组**基向量**。
 此外，还提供了两个提示（oil spills）：
 - 一个向量 \(g + o\)，其中：
-  -  \(g\) 是由 **0 和 1 组成的向量**  - \(o \in O\)
+  - \(g\) 是由 **0 和 1 组成的向量**
+  - \(o \in O\)
 - 以及 \(P(g)\) 的值。
 ---
 ### 解题思路
 我们希望从已知的提示中恢复出秘密向量 \(g\)。核心思想是造格，使得 \(g\) 是其中一个**很短的向量**，从而借助 BKZ 等格规约算法恢复出来。
+
 ---
 #### 推导过程
 1. 设我们猜测 \(o\) 的近似值为 \(\hat{o}\)，我们有如下公式：
 1. 由于 \(\hat{o} - g = o\) 是 \(O\) 的一个元素，我们可以令：
 1. 对于单个输出分量 \(p'_i(x, y)\)，可以写成：
+
 ---
 #### 造格
 考虑如下格子矩阵 \(B\)
