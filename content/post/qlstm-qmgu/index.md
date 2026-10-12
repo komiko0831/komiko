@@ -1,6 +1,5 @@
 ---
 title: "QLSTM 与 QMGU：从量子增强循环神经网络理解 Hybrid Quantum-Classical Algorithm 的设计思想"
-description: "读 QLSTM 与 QMGU 两篇论文后的笔记：量子电路替代了循环神经网络中的哪部分计算，以及“量子优势”目前能说到哪一步。"
 slug: qlstm-qmgu
 date: 2026-10-12 00:00:00+0000
 categories:
