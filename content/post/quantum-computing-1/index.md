@@ -9,6 +9,8 @@ tags:
     - note
     - quantum
 math: true
+build:
+    list: never
 ---
 
 个人量子计算学习记录与笔记，所有参考的文章/视频链接放在文末。

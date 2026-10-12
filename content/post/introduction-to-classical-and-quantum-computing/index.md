@@ -9,8 +9,6 @@ tags:
     - note
     - quantum
 math: true
-build:
-    list: never
 ---
 
 ## chapter 1
